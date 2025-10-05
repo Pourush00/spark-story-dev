@@ -91,4 +91,9 @@ All colors MUST be HSL.
     box-shadow: var(--shadow-neon);
     transform: translateY(-4px);
   }
+
+  .card-3d {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+  }
 }

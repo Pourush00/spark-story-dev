@@ -88,18 +88,31 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className={`group relative overflow-hidden border-border hover-glow transition-all ${
+              className={`group relative overflow-hidden border-2 backdrop-blur-sm bg-card/40 transition-all duration-500 ${
                 inView ? 'animate-scale-in' : 'opacity-0'
               }`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              style={{ 
+                animationDelay: `${index * 0.1}s`,
+                transform: hoveredIndex === index ? 'translateY(-8px) rotateX(2deg)' : 'translateY(0) rotateX(0)',
+                boxShadow: hoveredIndex === index ? '0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px hsl(var(--primary) / 0.2)' : 'none',
+              }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
+              {/* Animated gradient border */}
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}>
+                <div className={`absolute inset-[-2px] bg-gradient-to-r ${project.gradient} rounded-lg animate-spin-slow blur-md`} />
+              </div>
+              
+              {/* Dynamic background gradient */}
               <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}
+                className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-20 transition-all duration-500`}
               />
+              
+              {/* Shine effect on hover */}
+              <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000`} />
 
-              <div className="p-6 space-y-4">
+              <div className="relative z-10 p-6 space-y-4">
                 <div
                   className={`text-7xl mb-4 transition-transform duration-500 ${
                     hoveredIndex === index ? 'scale-110 rotate-12' : ''
@@ -152,11 +165,6 @@ const Projects = () => {
                 </div>
               </div>
 
-              <div
-                className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r ${project.gradient} transform origin-left transition-transform duration-500 ${
-                  hoveredIndex === index ? 'scale-x-100' : 'scale-x-0'
-                }`}
-              />
             </Card>
           ))}
         </div>

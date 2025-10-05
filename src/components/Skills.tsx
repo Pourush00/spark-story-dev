@@ -88,11 +88,24 @@ const Skills = () => {
             return (
               <Card
                 key={index}
-                className={`p-8 border-border hover-glow group transition-all ${
+                className={`relative p-8 border-2 backdrop-blur-sm bg-card/40 group transition-all duration-500 overflow-hidden ${
                   inView ? 'animate-scale-in' : 'opacity-0'
                 }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
+                style={{ 
+                  animationDelay: `${index * 0.1}s`,
+                  borderImage: `linear-gradient(135deg, transparent, hsl(var(--primary) / 0.5), transparent) 1`,
+                }}
               >
+                {/* Animated gradient border effect */}
+                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className={`absolute inset-[-2px] bg-gradient-to-r ${category.color} rounded-lg blur-sm`} />
+                </div>
+                
+                {/* Glassmorphism overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                {/* Content wrapper */}
+                <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-6">
                   <div
                     className={`p-3 rounded-xl bg-gradient-to-br ${category.color} group-hover:scale-110 transition-transform`}
@@ -122,6 +135,7 @@ const Skills = () => {
                       </div>
                     </div>
                   ))}
+                </div>
                 </div>
               </Card>
             );
