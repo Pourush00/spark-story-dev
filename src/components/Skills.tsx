@@ -9,7 +9,6 @@ const Skills = () => {
     {
       icon: Code2,
       title: 'Frontend',
-      color: 'from-primary to-primary/50',
       skills: [
         { name: 'React.js', level: 95 },
         { name: 'TypeScript', level: 90 },
@@ -20,7 +19,6 @@ const Skills = () => {
     {
       icon: Server,
       title: 'Backend',
-      color: 'from-accent to-accent/50',
       skills: [
         { name: 'Node.js', level: 90 },
         { name: 'Express.js', level: 90 },
@@ -31,7 +29,6 @@ const Skills = () => {
     {
       icon: Database,
       title: 'Database',
-      color: 'from-secondary to-secondary/50',
       skills: [
         { name: 'MongoDB', level: 90 },
         { name: 'PostgreSQL', level: 80 },
@@ -42,7 +39,6 @@ const Skills = () => {
     {
       icon: Brain,
       title: 'AI/ML',
-      color: 'from-primary to-secondary',
       skills: [
         { name: 'TensorFlow', level: 85 },
         { name: 'PyTorch', level: 80 },
@@ -53,7 +49,6 @@ const Skills = () => {
     {
       icon: GitBranch,
       title: 'DSA & Languages',
-      color: 'from-accent to-primary',
       skills: [
         { name: 'C++', level: 95 },
         { name: 'JavaScript', level: 95 },
@@ -64,7 +59,6 @@ const Skills = () => {
     {
       icon: Smartphone,
       title: 'Tools & Others',
-      color: 'from-secondary to-accent',
       skills: [
         { name: 'Git & GitHub', level: 95 },
         { name: 'Docker', level: 80 },
@@ -88,31 +82,16 @@ const Skills = () => {
             return (
               <Card
                 key={index}
-                className={`relative p-8 border-2 backdrop-blur-sm bg-card/40 group transition-all duration-500 overflow-hidden ${
+                className={`p-8 border border-border/50 bg-card/50 backdrop-blur-sm group transition-all duration-300 hover:shadow-2xl hover:shadow-black/50 ${
                   inView ? 'animate-scale-in' : 'opacity-0'
                 }`}
-                style={{ 
-                  animationDelay: `${index * 0.1}s`,
-                  borderImage: `linear-gradient(135deg, transparent, hsl(var(--primary) / 0.5), transparent) 1`,
-                }}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {/* Animated gradient border effect */}
-                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className={`absolute inset-[-2px] bg-gradient-to-r ${category.color} rounded-lg blur-sm`} />
-                </div>
-                
-                {/* Glassmorphism overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Content wrapper */}
-                <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-6">
-                  <div
-                    className={`p-3 rounded-xl bg-gradient-to-br ${category.color} group-hover:scale-110 transition-transform`}
-                  >
-                    <Icon className="h-8 w-8 text-foreground" />
+                  <div className="p-3 rounded-xl bg-primary/10 border border-primary/20 group-hover:bg-primary/20 group-hover:scale-110 transition-all duration-300">
+                    <Icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="text-2xl font-bold text-gradient">{category.title}</h3>
+                  <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
                 </div>
 
                 <div className="space-y-4">
@@ -122,11 +101,9 @@ const Skills = () => {
                         <span className="font-medium text-foreground">{skill.name}</span>
                         <span className="text-primary font-bold">{skill.level}%</span>
                       </div>
-                      <div className="h-2 bg-muted rounded-full overflow-hidden">
+                      <div className="h-2 bg-muted/50 rounded-full overflow-hidden">
                         <div
-                          className={`h-full bg-gradient-to-r ${category.color} rounded-full transition-all duration-1000 ease-out ${
-                            inView ? 'w-full' : 'w-0'
-                          }`}
+                          className="h-full bg-gradient-to-r from-primary to-primary/60 rounded-full transition-all duration-1000 ease-out"
                           style={{
                             width: inView ? `${skill.level}%` : '0%',
                             transitionDelay: `${(index * 0.1 + skillIndex * 0.05)}s`,
@@ -135,7 +112,6 @@ const Skills = () => {
                       </div>
                     </div>
                   ))}
-                </div>
                 </div>
               </Card>
             );

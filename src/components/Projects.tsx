@@ -18,7 +18,6 @@ const Projects = () => {
       tech: ['React', 'Node.js', 'MongoDB', 'TensorFlow', 'Express'],
       liveUrl: 'https://demo.com',
       githubUrl: 'https://github.com/yourusername/project',
-      gradient: 'from-primary to-secondary',
     },
     {
       title: 'Real-Time Chat Platform',
@@ -28,7 +27,6 @@ const Projects = () => {
       tech: ['React', 'Socket.io', 'Node.js', 'Redis', 'MongoDB'],
       liveUrl: 'https://demo.com',
       githubUrl: 'https://github.com/yourusername/project',
-      gradient: 'from-accent to-primary',
     },
     {
       title: 'E-Commerce Marketplace',
@@ -38,7 +36,6 @@ const Projects = () => {
       tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Stripe', 'Tailwind'],
       liveUrl: 'https://demo.com',
       githubUrl: 'https://github.com/yourusername/project',
-      gradient: 'from-secondary to-accent',
     },
     {
       title: 'Machine Learning Model Hub',
@@ -48,7 +45,6 @@ const Projects = () => {
       tech: ['React', 'Flask', 'PyTorch', 'Docker', 'AWS'],
       liveUrl: 'https://demo.com',
       githubUrl: 'https://github.com/yourusername/project',
-      gradient: 'from-primary to-accent',
     },
     {
       title: 'Algorithm Visualizer',
@@ -58,7 +54,6 @@ const Projects = () => {
       tech: ['React', 'D3.js', 'TypeScript', 'Vite', 'Tailwind'],
       liveUrl: 'https://demo.com',
       githubUrl: 'https://github.com/yourusername/project',
-      gradient: 'from-accent to-secondary',
     },
     {
       title: 'Social Media Aggregator',
@@ -68,7 +63,6 @@ const Projects = () => {
       tech: ['React', 'GraphQL', 'Node.js', 'MongoDB', 'OpenAI'],
       liveUrl: 'https://demo.com',
       githubUrl: 'https://github.com/yourusername/project',
-      gradient: 'from-secondary to-primary',
     },
   ];
 
@@ -88,40 +82,23 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card
               key={index}
-              className={`group relative overflow-hidden border-2 backdrop-blur-sm bg-card/40 transition-all duration-500 ${
+              className={`p-6 border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-2xl hover:shadow-black/50 ${
                 inView ? 'animate-scale-in' : 'opacity-0'
               }`}
-              style={{ 
-                animationDelay: `${index * 0.1}s`,
-                transform: hoveredIndex === index ? 'translateY(-8px) rotateX(2deg)' : 'translateY(0) rotateX(0)',
-                boxShadow: hoveredIndex === index ? '0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px hsl(var(--primary) / 0.2)' : 'none',
-              }}
+              style={{ animationDelay: `${index * 0.1}s` }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              {/* Animated gradient border */}
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}>
-                <div className={`absolute inset-[-2px] bg-gradient-to-r ${project.gradient} rounded-lg animate-spin-slow blur-md`} />
-              </div>
-              
-              {/* Dynamic background gradient */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-20 transition-all duration-500`}
-              />
-              
-              {/* Shine effect on hover */}
-              <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000`} />
-
-              <div className="relative z-10 p-6 space-y-4">
+              <div className="space-y-4">
                 <div
-                  className={`text-7xl mb-4 transition-transform duration-500 ${
-                    hoveredIndex === index ? 'scale-110 rotate-12' : ''
+                  className={`text-7xl mb-4 transition-transform duration-300 ${
+                    hoveredIndex === index ? 'scale-110' : ''
                   }`}
                 >
                   {project.image}
                 </div>
 
-                <h3 className="text-2xl font-bold text-gradient group-hover:glow-effect transition-all">
+                <h3 className="text-2xl font-bold text-foreground">
                   {project.title}
                 </h3>
 
@@ -134,7 +111,7 @@ const Projects = () => {
                     <Badge
                       key={techIndex}
                       variant="outline"
-                      className={`border-primary/50 bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent font-semibold`}
+                      className="border-primary/30 text-primary"
                     >
                       {tech}
                     </Badge>
@@ -144,7 +121,7 @@ const Projects = () => {
                 <div className="flex gap-3 pt-4">
                   <Button
                     size="sm"
-                    className={`flex-1 bg-gradient-to-r ${project.gradient} hover:opacity-90 font-semibold`}
+                    className="flex-1 bg-primary hover:bg-primary/90"
                     asChild
                   >
                     <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
@@ -155,7 +132,7 @@ const Projects = () => {
                   <Button
                     size="sm"
                     variant="outline"
-                    className="border-primary/50 hover:bg-primary/10"
+                    className="border-primary/30 hover:bg-primary/10"
                     asChild
                   >
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
